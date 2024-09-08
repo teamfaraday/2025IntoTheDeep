@@ -6,5 +6,5 @@ import org.firstinspires.ftc.teamcode.faradaycode.OpModes;
 
 @TeleOp(name="TeleIsOpping")
 public class TeleIsOpping extends OpModes {
-    
+
 }
