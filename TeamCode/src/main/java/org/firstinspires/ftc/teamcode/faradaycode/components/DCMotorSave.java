@@ -1,12 +1,12 @@
-
-package org.firstinspires.ftc.teamcode.faradaycode.trash;
+package org.firstinspires.ftc.teamcode.faradaycode.components;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.faradaycode.*;
+import org.firstinspires.ftc.teamcode.faradaycode.OpModes;
+import org.firstinspires.ftc.teamcode.faradaycode.deviceNames;
 
-public class DCMotorSave implements  deviceNames{
+public class DCMotorSave implements deviceNames {
 
     //speeds for rotation
     public double power1 = 1;
@@ -37,13 +37,13 @@ public class DCMotorSave implements  deviceNames{
 
     //functions
     public void activate() {
-        dummyDCMotor.setPower(power1 * OpModes.nerf * ((OpModes.isSlow) ? slowConst: 1));
+        dummyDCMotor.setPower(power1 * OpModes.nerf * ((OpModes.isSlow) ? slowConst: OpModes.slowAmnt));
     }
     public void deactivate() {
         dummyDCMotor.setPower(0);
     }
     public void reverse() {
-        dummyDCMotor.setPower(power2 * OpModes.nerf * ((OpModes.isSlow) ? slowConst: 1));
+        dummyDCMotor.setPower(power2 * OpModes.nerf * ((OpModes.isSlow) ? slowConst: OpModes.slowAmnt));
     }
 
     //for Auto
@@ -52,8 +52,6 @@ public class DCMotorSave implements  deviceNames{
     }
 
     public void encoderRun(int ticks) {
-        dummyDCMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
         int encoderPos;
         encoderPos = dummyDCMotor.getCurrentPosition();
         encoderPos -= (ticks);

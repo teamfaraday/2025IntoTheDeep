@@ -77,13 +77,13 @@ public class tFodPipeline implements deviceNames {
         visionPortal = builder.build();
     }
     /*
-    *
-    *
-    *
     * List<Recognition> currentRecognitions;
         currentRecognitions = tFod.tfod.getRecognitions();
 
-        if (currentRecognitions.size() != 0) {blahblahblah}
-       */
+        if (currentRecognitions.size() != 0) {blahblahblah}*/
+
+    //        currentRecognitions.get(0).getLabel()
+    //         returns name of label
+        
 
 }

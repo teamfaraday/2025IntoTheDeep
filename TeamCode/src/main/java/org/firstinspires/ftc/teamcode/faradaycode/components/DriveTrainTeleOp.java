@@ -3,12 +3,13 @@ package org.firstinspires.ftc.teamcode.faradaycode.components;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.faradaycode.*;
+import org.firstinspires.ftc.teamcode.faradaycode.OpModes;
+import org.firstinspires.ftc.teamcode.faradaycode.deviceNames;
 
-public class DriveTrainTeleOp implements deviceNames{
+public class DriveTrainTeleOp implements deviceNames {
 
     //constants
-    public final double powerRange = 1;
+    public double powerRange = 1;
     public double slowConst = 0.45;
 
     //inits motor objects
@@ -28,12 +29,12 @@ public class DriveTrainTeleOp implements deviceNames{
     }
 
     //sets motors based on teleop vals given
-    public void iterate(double y, double x, double rx) {
-        double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), powerRange);
-        double frontLeftPower = ((y - x - rx)) / denominator;
-        double backLeftPower = ((y + x - rx)) / denominator;
-        double frontRightPower = ((y + x + rx)) / denominator;
-        double backRightPower = ((y - x + rx)) / denominator;
+    public void iterate(double forwardSpeed, double strafeSpeed, double turnSpeed) {
+        double denominator = Math.max(Math.abs(forwardSpeed) + Math.abs(strafeSpeed) + Math.abs(turnSpeed), powerRange);
+        double frontLeftPower = ((forwardSpeed - strafeSpeed - turnSpeed)) / denominator;
+        double frontRightPower = ((forwardSpeed + strafeSpeed + turnSpeed)) / denominator;
+        double backLeftPower = ((forwardSpeed + strafeSpeed - turnSpeed)) / denominator;
+        double backRightPower = ((forwardSpeed - strafeSpeed + turnSpeed)) / denominator;
         fL.setPower(frontLeftPower * OpModes.nerf * ((OpModes.isSlow) ? slowConst : OpModes.slowAmnt));
         bL.setPower(backLeftPower * OpModes.nerf * ((OpModes.isSlow) ? slowConst : OpModes.slowAmnt));
         fR.setPower(frontRightPower * OpModes.nerf * ((OpModes.isSlow) ? slowConst : OpModes.slowAmnt));
@@ -51,7 +52,7 @@ public class DriveTrainTeleOp implements deviceNames{
         bL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         bR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         fR.setDirection(DcMotor.Direction.REVERSE);
-        bR.setDirection(DcMotor.Direction.FORWARD);
+        bR.setDirection(DcMotor.Direction.REVERSE);
         bL.setDirection(DcMotor.Direction.FORWARD);
         fL.setDirection(DcMotor.Direction.FORWARD);
     }

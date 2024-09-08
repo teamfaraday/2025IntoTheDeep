@@ -1,28 +1,36 @@
 package org.firstinspires.ftc.teamcode.faradaycode.TeleOp;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.faradaycode.OpModes;
 
+@Disabled
 @TeleOp(name = "TeleIsOpping")
 public class TeleIsOpping extends OpModes {
     public void runOpMode(){
+        //code here is setup like constants
         super.turnOn();
 
-
+        //code past here will run once you start, so an init
         waitForStart();
 
-        claw.openClaw();
+        servoSave.moveUp();
 
-        while (opModeIsActive() && !(gamepad1.start || gamepad2.start)){
-            telemetry.addData("nerf", OpModes.nerf);
-            telemetry.addData("slowAmnt", OpModes.slowAmnt);
+        //all code here will be continuously run during the execution
+        while (opModeIsActive() && !stopped){
+            //creates telem for nerf
+            telemetry.addData("nerf", nerf);
             telemetry.update();
 
-            NerfSlow.iterate(gamepad1.left_bumper, gamepad1.dpad_right, gamepad1.dpad_left);
+            //sets up slow vals and nerf vals + creates failsafe exit code
+            NerfSlow.iterate(gamepad1.left_trigger, gamepad1.dpad_right, gamepad1.dpad_left);
+            stopped = gamepad1.left_bumper && gamepad1.left_trigger > 0.6 && gamepad1.right_bumper && gamepad1.right_trigger > 0.6;
 
-            claw.iterate(gamepad1.x, gamepad1.y);
-            slides.iterate(gamepad1.left_trigger, gamepad1.right_trigger);
+            //iterators
+            servoSave.iterate(gamepad1.dpad_up, gamepad1.dpad_down);
+            dcMotorSave.iterate(gamepad1.a, gamepad1.b);
+            crServoSave.iterate(gamepad1.left_bumper, gamepad1.right_bumper);
             driveTrainTeleOp.iterate(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
         }
     }
