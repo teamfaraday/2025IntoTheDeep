@@ -3,25 +3,25 @@ package org.firstinspires.ftc.teamcode.faradaycode;
  /*
     Control Hub
         Motors
-            0: backLeft
-            1: frontLeft
-            2: slide2
-            3: hang
+            0: rightRear
+            1: leftRear
+            2: rightFront
+            3: leftFront
         Servos
-            0: drone
-            1: purplePixel
+            0:
+            1:
     Expansion Hub
         Motors
-            0: intakeA
-            1: slide
-            2: frontRight
-            3: backRight
+            0: rightSlide
+            1: leftSlide
+            2:
+            3:
         Servos
-            0: release
-            1: intakeB1
-            2: intakeB2
-            3: rotate1
-            4: rotate2 */
+            0:
+            1:
+            2:
+            3:
+            4:           */
 
 public interface deviceNames {
 
