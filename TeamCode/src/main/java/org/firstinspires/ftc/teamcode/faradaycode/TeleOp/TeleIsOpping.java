@@ -30,9 +30,10 @@ public class TeleIsOpping extends OpModes {
 
             //iterators
             servoSave.iterate(gamepad1.dpad_up, gamepad1.dpad_down);
-            dcMotorSave.iterate(gamepad1.a, gamepad1.b);
-            crServoSave.iterate(gamepad1.left_bumper, gamepad1.right_bumper);
+           // dcMotorSave.iterate(gamepad1.a, gamepad1.b);
+           // crServoSave.iterate(gamepad1.left_bumper, gamepad1.right_bumper);
             driveTrainTeleOp.iterate(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
+            slide.iterate(gamepad1.left_bumper, gamepad1.right_bumper, gamepad1.a);
         }
     }
 }

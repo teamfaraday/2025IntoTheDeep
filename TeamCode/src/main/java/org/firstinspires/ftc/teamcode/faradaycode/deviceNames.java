@@ -29,7 +29,8 @@ public interface deviceNames {
     String dummyServoName = "dummyServo"; //Expansion hub 2
 
     //motors
-    String dummyDCMotorName = "dummyDCMotor"; //Control hub 1
+    String slideRightName = "rightSlide"; //Expansion Hub
+    String slideLeftName = "leftSlide"; //Expansion Hub
 
     //crservos
     String dummyCRServoName = "dummyCRServo";
