@@ -8,7 +8,7 @@ package org.firstinspires.ftc.teamcode.faradaycode;
             2: rightFront
             3: leftFront
         Servos
-            0:
+            0: intake
             1:
     Expansion Hub
         Motors
@@ -17,8 +17,8 @@ package org.firstinspires.ftc.teamcode.faradaycode;
             2:
             3:
         Servos
-            0:
-            1:
+            0: arm1 -->to-do list
+            1: arm2 --> to-do list
             2:
             3:
             4:           */
