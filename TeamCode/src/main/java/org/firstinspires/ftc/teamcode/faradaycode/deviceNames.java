@@ -3,22 +3,22 @@ package org.firstinspires.ftc.teamcode.faradaycode;
  /*
     Control Hub
         Motors
-            0: rightRear
-            1: leftRear
-            2: rightFront
+            0: arm
+            1: rightFront
+            2:  leftRear
             3: leftFront
         Servos
             0: intake
-            1:
+            1: rotate
     Expansion Hub
         Motors
             0: rightSlide
             1: leftSlide
-            2:
+            2: rightRear
             3:
         Servos
-            0: arm1 -->to-do list
-            1: arm2 --> to-do list
+            0:
+            1:
             2:
             3:
             4:           */
@@ -26,14 +26,22 @@ package org.firstinspires.ftc.teamcode.faradaycode;
 public interface deviceNames {
 
     //servos
-    String dummyServoName = "dummyServo"; //Expansion hub 2
+    String rotate = "rotate";
 
     //motors
-    String slideRightName = "rightSlide"; //Expansion Hub
-    String slideLeftName = "leftSlide"; //Expansion Hub
+    String slideRight = "slideRight"; //Expansion Hub
+    String slideLeft = "slideLeft"; //Expansion Hub
 
     //crservos
-    String dummyCRServoName = "dummyCRServo";
+    String intake = "intake";
+
+    //dc motor
+    String arm = "arm";
+
+    //slide rotation
+    String armServo1 = "as1";
+    String armServo2 = "as2";
+
 
     // drivetrain
     String leftFrontName = "leftFront";

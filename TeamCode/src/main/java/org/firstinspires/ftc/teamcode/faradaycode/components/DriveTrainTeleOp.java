@@ -31,8 +31,8 @@ public class DriveTrainTeleOp implements deviceNames {
     //sets motors based on teleop vals given
     public void iterate(double forwardSpeed, double strafeSpeed, double turnSpeed) {
         double denominator = Math.max(Math.abs(forwardSpeed) + Math.abs(strafeSpeed) + Math.abs(turnSpeed), powerRange);
-        double frontLeftPower = ((forwardSpeed - strafeSpeed - turnSpeed)) / denominator;
-        double frontRightPower = ((forwardSpeed + strafeSpeed + turnSpeed)) / denominator;
+        double frontLeftPower = ((-forwardSpeed - strafeSpeed - turnSpeed)) / denominator;
+        double frontRightPower = ((-forwardSpeed + strafeSpeed + turnSpeed)) / denominator;
         double backLeftPower = ((forwardSpeed + strafeSpeed - turnSpeed)) / denominator;
         double backRightPower = ((forwardSpeed - strafeSpeed + turnSpeed)) / denominator;
         fL.setPower(frontLeftPower * OpModes.nerf * ((OpModes.isSlow) ? slowConst : OpModes.slowAmnt));

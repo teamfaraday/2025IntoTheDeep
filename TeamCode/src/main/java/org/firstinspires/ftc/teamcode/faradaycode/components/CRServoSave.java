@@ -20,7 +20,7 @@ public class CRServoSave implements deviceNames {
 
     //inits object and assigns servo names
     public CRServoSave(HardwareMap hardwareMap) {
-        dummyCRServo = hardwareMap.crservo.get(dummyCRServoName);
+        dummyCRServo = hardwareMap.crservo.get(intake);
     }
 
     //when called, parse through for motion

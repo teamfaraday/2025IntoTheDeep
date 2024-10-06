@@ -5,10 +5,12 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.faradaycode.OpModes;
-public class Slide {
+import org.firstinspires.ftc.teamcode.faradaycode.deviceNames;
+
+public class Slide implements deviceNames{
 
     public double slidePower = 1;
-    public double antiGravPower = 0.1;
+    public double antiGravPower = -0.06;
     public double slowConst = 0.45;
     public double slowSlidePower = -0.1;
     public double posSlide;
@@ -20,8 +22,8 @@ public class Slide {
 
 
     public Slide(HardwareMap hardwareMap) {
-        slideR = hardwareMap.dcMotor.get("slideRight");
-        slideL = hardwareMap.dcMotor.get("slideLeft");
+        slideR = hardwareMap.dcMotor.get(slideRight);
+        slideL = hardwareMap.dcMotor.get(slideLeft);
         slideR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         slideL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         slideR.setDirection(DcMotorSimple.Direction.REVERSE);

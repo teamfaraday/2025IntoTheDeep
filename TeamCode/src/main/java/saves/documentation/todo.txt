@@ -1,7 +1,0 @@
-1: fix tfodpipeline
-2: add other pipelines?
-3: make better documentation
-4: do testing to see whether if statements or just iterating is faster or if it makes a difference
-5: rrrrrrrr
-6: Finite State Machines
-

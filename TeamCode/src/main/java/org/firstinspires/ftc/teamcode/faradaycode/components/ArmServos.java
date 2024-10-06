@@ -5,18 +5,22 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.faradaycode.deviceNames;
 
-public class ServoSave implements deviceNames {
+public class ArmServos implements deviceNames {
 
     //values for servo pos
-    public double upPos = 0.57;
-    public double downPos = .23;
+    public double upPos1 = .79;
+    public double downPos1 = 0;
+    public double upPos2 = 0;
+    public double downPos2 = .82;
 
     //inits servo objects
-    public Servo dummyServo;
+    public Servo as1;
+    public Servo as2;
 
     //inits object and assigns servo names
-    public ServoSave(HardwareMap hardwareMap) {
-        dummyServo = hardwareMap.get(Servo.class, rotate);
+    public ArmServos(HardwareMap hardwareMap) {
+        as1 = hardwareMap.get(Servo.class, armServo1);
+        as2 = hardwareMap.get(Servo.class, armServo2);
     }
 
     //what gets called
@@ -28,9 +32,11 @@ public class ServoSave implements deviceNames {
     //functions
     //use 'OpModes.nerf' to grab nerf value for servo testing
     public void moveUp() {
-        dummyServo.setPosition(upPos);
+        as1.setPosition(upPos1);
+        as2.setPosition(upPos2);
     }
     public void moveDown() {
-        dummyServo.setPosition(downPos);
+        as1.setPosition(downPos1);
+        as2.setPosition(downPos2);
     }
 }
