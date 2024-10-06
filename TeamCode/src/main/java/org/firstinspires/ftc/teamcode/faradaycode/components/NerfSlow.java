@@ -5,7 +5,8 @@ import org.firstinspires.ftc.teamcode.faradaycode.OpModes;
 public class NerfSlow {
 
     //constants
-    double nerfInc = 0.001;
+    //double nerfInc = 0.001;
+    double nerfInc = 0.0001;
 
     //iterates
     public void iterate(double slowVal, boolean increase, boolean decrease) {

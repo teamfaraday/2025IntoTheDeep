@@ -12,8 +12,8 @@ package org.firstinspires.ftc.teamcode.faradaycode;
             1: rotate
     Expansion Hub
         Motors
-            0: rightSlide
-            1: leftSlide
+            0: slideRight
+            1: slideLeft
             2: rightRear
             3:
         Servos

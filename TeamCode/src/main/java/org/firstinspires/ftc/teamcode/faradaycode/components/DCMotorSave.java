@@ -16,6 +16,12 @@ public class DCMotorSave implements deviceNames {
     //amnt to slow smth down by
     public double slowConst = 0.2;
 
+    public boolean insideGrav = false;
+    public boolean outsideGrav = false;
+
+    public double powerInside = -.00045;
+    public double powerOutside = .00045;
+
     //inits servo objects
     public DcMotor armDCMotor;
 
@@ -38,13 +44,19 @@ public class DCMotorSave implements deviceNames {
 
     //functions
     public void activate() {
-        armDCMotor.setPower(power1 * OpModes.nerf * ((OpModes.isSlow) ? slowConst: OpModes.slowAmnt));
+        armDCMotor.setPower(power1 /** OpModes.nerf*/ * ((OpModes.isSlow) ? slowConst: OpModes.slowAmnt));
     }
     public void deactivate() {
-        armDCMotor.setPower(0);
+        if (insideGrav) {
+            armDCMotor.setPower(powerInside);
+        } else if (outsideGrav) {
+            armDCMotor.setPower(powerOutside);
+        } else {
+            armDCMotor.setPower(0);
+        }
     }
     public void reverse() {
-        armDCMotor.setPower(power2 * OpModes.nerf * ((OpModes.isSlow) ? slowConst: OpModes.slowAmnt));
+        armDCMotor.setPower(power2 /** OpModes.nerf */* ((OpModes.isSlow) ? slowConst: OpModes.slowAmnt));
     }
 
     //for Auto
@@ -52,7 +64,7 @@ public class DCMotorSave implements deviceNames {
         armDCMotor.setPower(speed);
     }
 
-    public void intake(int ticks) {
+    public void test(int ticks) {
         int encoderPos;
         encoderPos = armDCMotor.getCurrentPosition();
         encoderPos -= (ticks);
@@ -68,12 +80,12 @@ public class DCMotorSave implements deviceNames {
         armDCMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
-    public void outtake(int ticks) {
+    public void setPos(int ticks) {
         int encoderPos;
         encoderPos = armDCMotor.getCurrentPosition();
         encoderPos -= (ticks);
 
-        armDCMotor.setTargetPosition(encoderPos);
+        armDCMotor.setTargetPosition(ticks);
         armDCMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         while ( armDCMotor.isBusy()) {
