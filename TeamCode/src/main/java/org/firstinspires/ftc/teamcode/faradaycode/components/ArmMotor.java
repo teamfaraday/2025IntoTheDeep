@@ -1,13 +1,12 @@
 package org.firstinspires.ftc.teamcode.faradaycode.components;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.faradaycode.OpModes;
 import org.firstinspires.ftc.teamcode.faradaycode.deviceNames;
 
-public class DCMotorSave implements deviceNames {
+public class ArmMotor implements deviceNames {
 
     //speeds for rotation
     public double power1 = .3;
@@ -23,12 +22,12 @@ public class DCMotorSave implements deviceNames {
     public double powerOutside = .00045;
 
     //inits servo objects
-    public DcMotor armDCMotor;
+    public DcMotor armMotor;
 
     //inits object and assigns servo names
-    public DCMotorSave(HardwareMap hardwareMap) {
-        armDCMotor = hardwareMap.dcMotor.get(arm);
-        armDCMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+    public ArmMotor(HardwareMap hardwareMap) {
+        armMotor = hardwareMap.dcMotor.get(arm);
+        armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     //when called, parse through for motion
@@ -44,55 +43,55 @@ public class DCMotorSave implements deviceNames {
 
     //functions
     public void activate() {
-        armDCMotor.setPower(power1 /** OpModes.nerf*/ * ((OpModes.isSlow) ? slowConst: OpModes.slowAmnt));
+        armMotor.setPower(power1 /** OpModes.nerf*/ * ((OpModes.isSlow) ? slowConst: OpModes.slowAmnt));
     }
     public void deactivate() {
         if (insideGrav) {
-            armDCMotor.setPower(powerInside);
+            armMotor.setPower(powerInside);
         } else if (outsideGrav) {
-            armDCMotor.setPower(powerOutside);
+            armMotor.setPower(powerOutside);
         } else {
-            armDCMotor.setPower(0);
+            armMotor.setPower(0);
         }
     }
     public void reverse() {
-        armDCMotor.setPower(power2 /** OpModes.nerf */* ((OpModes.isSlow) ? slowConst: OpModes.slowAmnt));
+        armMotor.setPower(power2 /** OpModes.nerf */* ((OpModes.isSlow) ? slowConst: OpModes.slowAmnt));
     }
 
     //for Auto
     public void activate(double speed) {
-        armDCMotor.setPower(speed);
+        armMotor.setPower(speed);
     }
 
     public void test(int ticks) {
         int encoderPos;
-        encoderPos = armDCMotor.getCurrentPosition();
+        encoderPos = armMotor.getCurrentPosition();
         encoderPos -= (ticks);
 
-        armDCMotor.setTargetPosition(encoderPos);
-        armDCMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        armMotor.setTargetPosition(encoderPos);
+        armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        while ( armDCMotor.isBusy()) {
-            armDCMotor.setPower(Math.abs(power1));
+        while ( armMotor.isBusy()) {
+            armMotor.setPower(Math.abs(power1));
         }
 
-        armDCMotor.setPower(0);
-        armDCMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        armMotor.setPower(0);
+        armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public void setPos(int ticks) {
         int encoderPos;
-        encoderPos = armDCMotor.getCurrentPosition();
+        encoderPos = armMotor.getCurrentPosition();
         encoderPos -= (ticks);
 
-        armDCMotor.setTargetPosition(ticks);
-        armDCMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        armMotor.setTargetPosition(ticks);
+        armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        while ( armDCMotor.isBusy()) {
-            armDCMotor.setPower(Math.abs(power1));
+        while ( armMotor.isBusy()) {
+            armMotor.setPower(Math.abs(power1));
         }
 
-        armDCMotor.setPower(0);
-        armDCMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        armMotor.setPower(0);
+        armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 }
