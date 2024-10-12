@@ -8,8 +8,9 @@ import org.firstinspires.ftc.teamcode.faradaycode.deviceNames;
 public class ServoSave implements deviceNames {
 
     //values for servo po
-    public double upPos = 0.885;
-    public double downPos = 0.57;
+    //y = up, x= down
+    public double upPos = 0.623;
+    public double downPos = 0.295;
 
     //inits servo objects
     public Servo dummyServo;

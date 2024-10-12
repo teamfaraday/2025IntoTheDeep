@@ -15,7 +15,7 @@ public class TeleIsOpping extends OpModes {
         //code past here will run once you start, so an init
         waitForStart();
 
-        servoSave.moveUp();
+        servoSave.moveDown();
 
         //all code here will be continuously run during the execution
         while (opModeIsActive() && !stopped){
@@ -31,9 +31,9 @@ public class TeleIsOpping extends OpModes {
 
             //iterators
             servoSave.iterate(gamepad1.dpad_left, gamepad1.dpad_right);
-            armMotor.iterate(gamepad1.a, gamepad1.b);
-            crServoSave.iterate(gamepad1.dpad_up, gamepad1.dpad_down);
-            armServos.iterate(gamepad1.x, gamepad1.y);
+            //armMotor.iterate(gamepad1.a, gamepad1.b);
+            intakeServo.iterate(gamepad1.dpad_up, gamepad1.dpad_down);
+            armServos.iterate(gamepad1.a, gamepad1.b);
             driveTrainTeleOp.iterate((gamepad1.left_stick_y), (gamepad1.left_stick_x), (gamepad1.right_stick_x));
             slide.iterate(gamepad1.left_bumper, gamepad1.right_bumper, gamepad1.a);
 
@@ -47,7 +47,7 @@ public class TeleIsOpping extends OpModes {
             if(gamepad1.x) {
                 armMotor.setPos(-543);
                 servoSave.moveDown();
-                armMotor.setPos(-40);
+                armMotor.setPos(-200);
                 armMotor.insideGrav = true;
                 armMotor.outsideGrav = false;
             }

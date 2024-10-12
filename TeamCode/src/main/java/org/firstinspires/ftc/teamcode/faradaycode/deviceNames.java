@@ -17,8 +17,8 @@ package org.firstinspires.ftc.teamcode.faradaycode;
             2: rightRear
             3:
         Servos
-            0:
-            1:
+            0:as1
+            1:as2
             2:
             3:
             4:           */

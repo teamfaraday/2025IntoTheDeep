@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.teamcode.faradaycode.OpModes;
 import org.firstinspires.ftc.teamcode.faradaycode.deviceNames;
 
-public class CRServoSave implements deviceNames {
+public class IntakeServo implements deviceNames {
 
     //speeds for rotation
     public double power1 = 1;
@@ -16,11 +16,11 @@ public class CRServoSave implements deviceNames {
     public double slowConst = 0.5;
 
     //inits servo objects
-    public CRServo dummyCRServo;
+    public CRServo intakeServo;
 
     //inits object and assigns servo names
-    public CRServoSave(HardwareMap hardwareMap) {
-        dummyCRServo = hardwareMap.crservo.get(intake);
+    public IntakeServo(HardwareMap hardwareMap) {
+        intakeServo = hardwareMap.crservo.get(intake);
     }
 
     //when called, parse through for motion
@@ -36,17 +36,17 @@ public class CRServoSave implements deviceNames {
 
     //functions
     public void activate() {
-        dummyCRServo.setPower(power1 * OpModes.nerf * ((OpModes.isSlow) ? slowConst: OpModes.slowAmnt));
+        intakeServo.setPower(power1 * OpModes.nerf * ((OpModes.isSlow) ? slowConst: OpModes.slowAmnt));
     }
     public void deactivate() {
-        dummyCRServo.setPower(0);
+        intakeServo.setPower(0);
     }
     public void reverse() {
-        dummyCRServo.setPower(power2 * OpModes.nerf * ((OpModes.isSlow) ? slowConst: OpModes.slowAmnt));
+        intakeServo.setPower(power2 * OpModes.nerf * ((OpModes.isSlow) ? slowConst: OpModes.slowAmnt));
     }
 
     //for Auto
     public void activate(double speed) {
-        dummyCRServo.setPower(speed);
+        intakeServo.setPower(speed);
     }
 }

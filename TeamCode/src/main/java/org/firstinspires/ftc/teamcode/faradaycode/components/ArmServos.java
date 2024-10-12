@@ -8,10 +8,14 @@ import org.firstinspires.ftc.teamcode.faradaycode.deviceNames;
 public class ArmServos implements deviceNames {
 
     //values for servo pos
-    public double upPos1 = .79;
+    public double upPos1 = 1;
     public double downPos1 = 0;
-    public double upPos2 = 0;
-    public double downPos2 = .82;
+
+    public double upPos2 = 1;
+    public double downPos2 = 0;
+
+    //up = a
+    //down = b
 
     //inits servo objects
     public Servo as1;
