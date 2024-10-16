@@ -20,9 +20,8 @@ public class TeleIsOpping extends OpModes {
         //all code here will be continuously run during the execution
         while (opModeIsActive() && !stopped){
             //creates telem for nerf
-            //telemetry.addData("nerf", nerf);
             telemetry.addData("pshak", armMotor.armMotor.getCurrentPosition());
-
+            telemetry.addData("pshik", outtakeMotor.outtakeMotor.getCurrentPosition());
             telemetry.update();
 
             //sets up slow vals and nerf vals + creates failsafe exit code
@@ -31,9 +30,8 @@ public class TeleIsOpping extends OpModes {
 
             //iterators
             servoSave.iterate(gamepad1.dpad_left, gamepad1.dpad_right);
-            //armMotor.iterate(gamepad1.a, gamepad1.b);
+            outtakeMotor.iterate(gamepad1.a, gamepad1.b);
             intakeServo.iterate(gamepad1.dpad_up, gamepad1.dpad_down);
-            armServos.iterate(gamepad1.a, gamepad1.b);
             driveTrainTeleOp.iterate((gamepad1.left_stick_y), (gamepad1.left_stick_x), (gamepad1.right_stick_x));
             slide.iterate(gamepad1.left_bumper, gamepad1.right_bumper, gamepad1.a);
 
