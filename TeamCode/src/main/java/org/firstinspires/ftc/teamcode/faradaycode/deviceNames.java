@@ -15,7 +15,7 @@ package org.firstinspires.ftc.teamcode.faradaycode;
             0: slideRight
             1: slideLeft
             2: rightRear
-            3:
+            3: outtake
         Servos
             0:as1
             1:as2
@@ -37,6 +37,8 @@ public interface deviceNames {
 
     //dc motor
     String arm = "arm";
+    String outtake = "outtake";
+
 
     //slide rotation
     String armServo1 = "as1";
