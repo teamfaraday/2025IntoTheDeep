@@ -8,9 +8,11 @@ import org.firstinspires.ftc.teamcode.faradaycode.deviceNames;
 public class ArmServos implements deviceNames {
 
     //values for servo pos
-    public double upPos1 = 1;
-    public double downPos1 = 0;
+    //right
+    public double upPos1 = 0.035;
+    public double downPos1 = 0.7;
 
+    //left
     public double upPos2 = 1;
     public double downPos2 = 0;
 
@@ -19,12 +21,12 @@ public class ArmServos implements deviceNames {
 
     //inits servo objects
     public Servo as1;
-    public Servo as2;
+//    public Servo as2;
 
     //inits object and assigns servo names
     public ArmServos(HardwareMap hardwareMap) {
         as1 = hardwareMap.get(Servo.class, armServo1);
-        as2 = hardwareMap.get(Servo.class, armServo2);
+  //      as2 = hardwareMap.get(Servo.class, armServo2);
     }
 
     //what gets called
@@ -37,10 +39,10 @@ public class ArmServos implements deviceNames {
     //use 'OpModes.nerf' to grab nerf value for servo testing
     public void moveUp() {
         as1.setPosition(upPos1);
-        as2.setPosition(upPos2);
+    //    as2.setPosition(upPos2);
     }
     public void moveDown() {
         as1.setPosition(downPos1);
-        as2.setPosition(downPos2);
+      //  as2.setPosition(downPos2);
     }
 }
