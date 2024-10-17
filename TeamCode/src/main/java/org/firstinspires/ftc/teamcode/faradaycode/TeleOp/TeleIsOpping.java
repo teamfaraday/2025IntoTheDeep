@@ -36,22 +36,36 @@ public class TeleIsOpping extends OpModes {
             slide.iterate(gamepad1.left_bumper, gamepad1.right_bumper, gamepad1.a);
             armMotor.iterate(false, false);
 
-            if(gamepad1.y && !armMotor.encodering) {
-                armMotor.setPos(-250);
-                if (armMotor.armMotor.getCurrentPosition() == -250){
-                    servoSave.moveUp();
+            if (!armMotor.encodering) {
+                if (gamepad1.y) {
+                    armMotor.movingDown = true;
+                    //armMotor.setPos(-250);
+
+                    //servoSave.moveDown();
+                    armMotor.setPos(-794);
+                    armMotor.insideGrav = false;
+                    armMotor.outsideGrav = true;
                 }
-                armMotor.setPos(-742);
-                armMotor.insideGrav = false;
-                armMotor.outsideGrav = true;
+                if (gamepad1.x) {
+                    //armMotor.setPos(-543);
+                    armMotor.movingUp = true;
+                    //servoSave.moveUp();
+                    armMotor.setPos(-200);
+                    armMotor.insideGrav = true;
+                    armMotor.outsideGrav = false;
+                }
+            } else {
+                if (armMotor.movingDown && armMotor.armMotor.getCurrentPosition() < -350) {
+                    servoSave.moveDown();
+                    armMotor.movingDown = false;
+                }
+                else if (armMotor.movingUp && armMotor.armMotor.getCurrentPosition()>-543)
+                {
+                    servoSave.moveUp();
+                    armMotor.movingUp = false;
+                }
             }
-            if(gamepad1.x && !armMotor.encodering) {
-                armMotor.setPos(-543);
-                servoSave.moveDown();
-                armMotor.setPos(-200);
-                armMotor.insideGrav = true;
-                armMotor.outsideGrav = false;
-            }
+
         }
     }
 }

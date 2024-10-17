@@ -21,6 +21,9 @@ public class ArmMotor implements deviceNames {
     public double powerInside = -.00045;
     public double powerOutside = .00045;
 
+    public boolean movingUp;
+    public boolean movingDown;
+
     public boolean encodering;
 
     //inits servo objects
@@ -30,6 +33,8 @@ public class ArmMotor implements deviceNames {
     public ArmMotor(HardwareMap hardwareMap) {
         armMotor = hardwareMap.dcMotor.get(arm);
         armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        movingDown = false;
+        movingUp = false;
     }
 
     //when called, parse through for motion

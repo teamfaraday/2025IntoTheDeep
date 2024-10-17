@@ -9,8 +9,8 @@ public class ServoSave implements deviceNames {
 
     //values for servo po
     //y = up, x= down
-    public double upPos = 0.623;
-    public double downPos = 0.295;
+    public double upPos = 0.295;
+    public double downPos = 0.623;
 
     //inits servo objects
     public Servo dummyServo;

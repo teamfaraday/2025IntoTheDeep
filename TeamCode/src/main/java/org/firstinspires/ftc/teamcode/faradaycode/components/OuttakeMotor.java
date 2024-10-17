@@ -9,16 +9,17 @@ import org.firstinspires.ftc.teamcode.faradaycode.deviceNames;
 public class OuttakeMotor implements deviceNames {
 
     //speeds for rotation
-    public double power1 = 1;
+    public double power1 = 0.3;
     public double gravDown = 0.01;
     public double gravUp = -0.01;
 
-    public int upPos = -561;
-    public int downPos = -274;
+    public int upPos = 153;
+    public int upPosCorrected = 150;
+    public int downPos = 340;
 
     public boolean encodering;
-    public boolean humanMove;
     public boolean isUp;
+    public boolean isUpCorrected;
 
     //inits servo objects
     public DcMotor outtakeMotor;
@@ -29,6 +30,7 @@ public class OuttakeMotor implements deviceNames {
         outtakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         encodering = false;
         isUp = false;
+        isUpCorrected = false;
     }
 
     //when called, parse through for motion
@@ -44,19 +46,21 @@ public class OuttakeMotor implements deviceNames {
 
         if (up && !encodering) {
             if(isUp) {
-                humanMove = true;
                 setPos(downPos);
+                isUp=false;
             } else {
-                humanMove = true;
                 setPos(upPos);
+                isUp=true;
+                isUpCorrected = false;
             }
-        } else if (!encodering && !humanMove) {
+        } else if (!encodering) {
+            outtakeMotor.setPower(0);
             //setPos((isUp) ? upPos : downPos);
-            if (outtakeMotor.getCurrentPosition() < -534 && outtakeMotor.getCurrentPosition() > -544) {
-                outtakeMotor.setPower(gravUp);
-            } else if (outtakeMotor.getCurrentPosition() < -548) {
-                outtakeMotor.setPower(gravDown);
-            }
+            //if (outtakeMotor.getCurrentPosition() < -534 && outtakeMotor.getCurrentPosition() > -544) {
+            //    outtakeMotor.setPower(gravUp);
+            //} else if (outtakeMotor.getCurrentPosition() < -548) {
+            //    outtakeMotor.setPower(gravDown);
+            //}
         }
     }
 
@@ -67,14 +71,12 @@ public class OuttakeMotor implements deviceNames {
     }
 
     public void setPos2() {
-        encodering=false;
-        outtakeMotor.setPower(-1);
         outtakeMotor.setPower(0);
         outtakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        /*if (humanMove) {
-           isUp = !isUp;
-           humanMove = false;
-        }*/
+        encodering=false;
+        if (!isUpCorrected && isUp) {
+            setPos(upPosCorrected);
+            isUpCorrected=true;
+        }
     }
 }
