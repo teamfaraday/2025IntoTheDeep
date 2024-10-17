@@ -34,15 +34,18 @@ public class TeleIsOpping extends OpModes {
             intakeServo.iterate(gamepad1.dpad_up, gamepad1.dpad_down);
             driveTrainTeleOp.iterate((gamepad1.left_stick_y), (gamepad1.left_stick_x), (gamepad1.right_stick_x));
             slide.iterate(gamepad1.left_bumper, gamepad1.right_bumper, gamepad1.a);
+            armMotor.iterate(false, false);
 
-            if(gamepad1.y) {
+            if(gamepad1.y && !armMotor.encodering) {
                 armMotor.setPos(-250);
-                servoSave.moveUp();
+                if (armMotor.armMotor.getCurrentPosition() == -250){
+                    servoSave.moveUp();
+                }
                 armMotor.setPos(-742);
                 armMotor.insideGrav = false;
                 armMotor.outsideGrav = true;
             }
-            if(gamepad1.x) {
+            if(gamepad1.x && !armMotor.encodering) {
                 armMotor.setPos(-543);
                 servoSave.moveDown();
                 armMotor.setPos(-200);

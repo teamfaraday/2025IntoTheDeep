@@ -72,9 +72,9 @@ public class OuttakeMotor implements deviceNames {
         outtakeMotor.setPower(0);
         outtakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        if (humanMove) {
+        /*if (humanMove) {
            isUp = !isUp;
            humanMove = false;
-        }
+        }*/
     }
 }

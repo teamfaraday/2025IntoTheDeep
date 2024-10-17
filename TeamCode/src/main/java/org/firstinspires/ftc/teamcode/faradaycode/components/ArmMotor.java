@@ -21,6 +21,8 @@ public class ArmMotor implements deviceNames {
     public double powerInside = -.00045;
     public double powerOutside = .00045;
 
+    public boolean encodering;
+
     //inits servo objects
     public DcMotor armMotor;
 
@@ -32,11 +34,20 @@ public class ArmMotor implements deviceNames {
 
     //when called, parse through for motion
     public void iterate(boolean forward, boolean reverse) {
+
+        if (encodering) {
+            if (armMotor.isBusy()) {
+                armMotor.setPower(Math.abs(power1));
+            }
+            else {
+                setPos2();
+            }
+        }
         if (forward) {
             activate();
         } else if (reverse) {
             reverse();
-        } else{
+        } else if (!encodering){
             deactivate();
         }
     }
@@ -63,34 +74,14 @@ public class ArmMotor implements deviceNames {
         armMotor.setPower(speed);
     }
 
-    public void test(int ticks) {
-        int encoderPos;
-        encoderPos = armMotor.getCurrentPosition();
-        encoderPos -= (ticks);
-
-        armMotor.setTargetPosition(encoderPos);
-        armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        while ( armMotor.isBusy()) {
-            armMotor.setPower(Math.abs(power1));
-        }
-
-        armMotor.setPower(0);
-        armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-    }
-
     public void setPos(int ticks) {
-        int encoderPos;
-        encoderPos = armMotor.getCurrentPosition();
-        encoderPos -= (ticks);
-
+        encodering = true;
         armMotor.setTargetPosition(ticks);
         armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
 
-        while ( armMotor.isBusy()) {
-            armMotor.setPower(Math.abs(power1));
-        }
-
+    public void setPos2(){
+        encodering = false;
         armMotor.setPower(0);
         armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
