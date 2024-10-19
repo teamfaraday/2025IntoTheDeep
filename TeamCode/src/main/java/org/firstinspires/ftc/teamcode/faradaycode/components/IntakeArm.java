@@ -15,11 +15,11 @@ public class IntakeArm implements deviceNames {
     public final double gravPowerInside = -.00045;
     public final double gravPowerOutside = .00045;
 
-    public final int outPos = -794;
-    public final int inPos = -200;
+    public final int inPos = -7;
+    public final int outPos = -694;
 
-    public final int rotateServoOutPos = -400;
-    public final int rotateServoInPos = -500;
+    public final int rotateServoOutPos = -300;
+    public final int rotateServoInPos = -400;
 
     //amnt to slow smth down by
     public final double slowConst = 0.2;
@@ -48,6 +48,7 @@ public class IntakeArm implements deviceNames {
     public IntakeArm(HardwareMap hardwareMap) {
         motor = hardwareMap.dcMotor.get(arm);
         motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         servo = hardwareMap.servo.get(rotate);
 

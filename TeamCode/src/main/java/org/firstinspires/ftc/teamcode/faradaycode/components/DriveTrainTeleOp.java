@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.faradaycode.components;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.faradaycode.OpModes;
@@ -54,7 +55,7 @@ public class DriveTrainTeleOp implements deviceNames {
         fR.setDirection(DcMotor.Direction.FORWARD);
         bR.setDirection(DcMotor.Direction.FORWARD);
         bL.setDirection(DcMotor.Direction.FORWARD);
-        fL.setDirection(DcMotor.Direction.FORWARD);
+        fL.setDirection(DcMotor.Direction.REVERSE);
     }
     //use only for RR
     public void autonDirs() {

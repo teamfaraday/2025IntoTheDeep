@@ -12,9 +12,9 @@ public class OuttakeMotor implements deviceNames {
     public double gravDown = 0.01;
     public double gravUp = -0.01;
 
-    public int upPos = 153;
-    public int upPosCorrected = 150;
-    public int downPos = 340;
+    public int upPos = -280;
+    public int upPosCorrected = -279;
+    public int downPos = -60;
 
     public boolean encodering;
     public boolean isUp;
@@ -27,6 +27,7 @@ public class OuttakeMotor implements deviceNames {
     public OuttakeMotor(HardwareMap hardwareMap) {
         outtakeMotor = hardwareMap.dcMotor.get(outtake);
         outtakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        outtakeMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         encodering = false;
         isUp = false;
         isUpCorrected = false;
@@ -54,12 +55,7 @@ public class OuttakeMotor implements deviceNames {
             }
         } else if (!encodering) {
             outtakeMotor.setPower(0);
-            //setPos((isUp) ? upPos : downPos);
-            //if (outtakeMotor.getCurrentPosition() < -534 && outtakeMotor.getCurrentPosition() > -544) {
-            //    outtakeMotor.setPower(gravUp);
-            //} else if (outtakeMotor.getCurrentPosition() < -548) {
-            //    outtakeMotor.setPower(gravDown);
-            //}
+
         }
     }
 
