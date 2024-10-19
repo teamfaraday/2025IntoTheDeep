@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.faradaycode.components;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.faradaycode.OpModes;
 import org.firstinspires.ftc.teamcode.faradaycode.deviceNames;
 
 public class OuttakeMotor implements deviceNames {
