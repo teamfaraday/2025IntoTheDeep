@@ -25,25 +25,17 @@ package org.firstinspires.ftc.teamcode.faradaycode;
 
 public interface deviceNames {
 
-    //servos
+    //intake system
+    String arm = "arm";
     String rotate = "rotate";
+    String intake = "intake";
 
     //motors
     String slideRight = "slideRight"; //Expansion Hub
     String slideLeft = "slideLeft"; //Expansion Hub
 
-    //crservos
-    String intake = "intake";
-
-    //dc motor
-    String arm = "arm";
+    //outtake
     String outtake = "outtake";
-
-
-    //slide rotation
-    String armServo1 = "as1";
-    String armServo2 = "as2";
-
 
     // drivetrain
     String leftFrontName = "leftFront";
@@ -55,12 +47,5 @@ public interface deviceNames {
     String leftEncoderName = "slide2";
     String rightEncoderName = "hang";
     String frontEncoderName = "intakeA";
-
-    //tFod
-    String webCamName = "Webcam 1";
-    String blueLabel = "b";
-    String redLabel = "r";
-    String blueAsset = "bb.tflite";
-    String redAsset = "rr.tflite";
 
 }

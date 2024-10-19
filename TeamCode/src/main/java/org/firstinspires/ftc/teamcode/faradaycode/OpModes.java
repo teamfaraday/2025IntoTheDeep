@@ -4,17 +4,15 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.faradaycode.components.OuttakeMotor;
 import org.firstinspires.ftc.teamcode.faradaycode.components.IntakeServo;
-import org.firstinspires.ftc.teamcode.faradaycode.components.ArmMotor;
+import org.firstinspires.ftc.teamcode.faradaycode.components.IntakeArm;
 import org.firstinspires.ftc.teamcode.faradaycode.components.DriveTrainTeleOp;
 import org.firstinspires.ftc.teamcode.faradaycode.components.NerfSlow;
-import org.firstinspires.ftc.teamcode.faradaycode.components.ServoSave;
 import org.firstinspires.ftc.teamcode.faradaycode.components.Slide;
 
 public abstract class OpModes extends LinearOpMode{
 
-    public ServoSave servoSave;
     public IntakeServo intakeServo;
-    public ArmMotor armMotor;
+    public IntakeArm intakeArm;
     public DriveTrainTeleOp driveTrainTeleOp;
     public Slide slide;
     public OuttakeMotor outtakeMotor;
@@ -30,9 +28,8 @@ public abstract class OpModes extends LinearOpMode{
 
     public void turnOn() {
         driveTrainTeleOp = new DriveTrainTeleOp(hardwareMap);
-        servoSave = new ServoSave(hardwareMap);
         intakeServo = new IntakeServo(hardwareMap);
-        armMotor = new ArmMotor(hardwareMap);
+        intakeArm = new IntakeArm(hardwareMap);
         slide = new Slide(hardwareMap);
         outtakeMotor = new OuttakeMotor(hardwareMap);
 
