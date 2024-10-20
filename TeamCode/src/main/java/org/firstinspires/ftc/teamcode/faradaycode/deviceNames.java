@@ -3,25 +3,22 @@ package org.firstinspires.ftc.teamcode.faradaycode;
  /*
     Control Hub
         Motors
-            0: arm
-            1: rightFront
-            2:  leftRear
-            3: leftFront
+            0: slideLeft && odomRight
+            1: outtake && encoderOuttake
+            2: arm && encoderArm
+            3: leftRear && odomLeft
         Servos
             0: intake
             1: rotate
     Expansion Hub
         Motors
-            0: slideRight
-            1: slideLeft
-            2: rightRear
-            3: outtake
+            0: slideRight && odomCenter
+            1: rightRear
+            2: rightFront
+            3: leftFront //broken encoder port :(
         Servos
-            0:as1
-            1:as2
-            2:
-            3:
-            4:           */
+            0:
+*/
 
 public interface deviceNames {
 
