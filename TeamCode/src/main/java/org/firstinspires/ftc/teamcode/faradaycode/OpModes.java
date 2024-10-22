@@ -28,14 +28,15 @@ public abstract class OpModes extends LinearOpMode{
     public static double slowAmnt = 1.0;
 
     public void turnOn() {
-        driveTrainTeleOp = new DriveTrainTeleOp(hardwareMap);
         intakeServo = new IntakeServo(hardwareMap);
         intakeArm = new IntakeArm(hardwareMap);
         slide = new Slide(hardwareMap);
         outtakeMotor = new OuttakeMotor(hardwareMap);
+        turnOnDT();
+    }
 
-
-
+    public void turnOnDT() {
+        driveTrainTeleOp = new DriveTrainTeleOp(hardwareMap);
     }
 
 }

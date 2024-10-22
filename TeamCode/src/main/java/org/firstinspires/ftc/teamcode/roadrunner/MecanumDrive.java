@@ -73,14 +73,14 @@ public final class MecanumDrive {
 
         // drive model parameters
         //80.125 in
-        public double inPerTick = 340.84;
-        public double lateralInPerTick = 247.64163350386215;
-        public double trackWidthTicks = 4750.766691806389;
+        public double inPerTick = 0.00293393;
+        public double lateralInPerTick = 0.00215844417202;
+        public double trackWidthTicks = 4697.20811531986;
 
         // feedforward parameters (in tick units)
-        public double kS = 1.0356570012552897;
-        public double kV = 0.00057653836321485;
-        public double kA = 0;
+        public double kS = 1.0653977974335374;
+        public double kV = 0.0005762657091355733;
+        public double kA = 0.00008;
 
         // path profile parameters (in inches)
         public double maxWheelVel = 50;
@@ -92,9 +92,9 @@ public final class MecanumDrive {
         public double maxAngAccel = Math.PI;
 
         // path controller gains
-        public double axialGain = 0.0;
-        public double lateralGain = 0.0;
-        public double headingGain = 0.0; // shared with turn
+        public double axialGain = 4.0;
+        public double lateralGain = 10.0;
+        public double headingGain = 12.0; // shared with turn
 
         public double axialVelGain = 0.0;
         public double lateralVelGain = 0.0;
