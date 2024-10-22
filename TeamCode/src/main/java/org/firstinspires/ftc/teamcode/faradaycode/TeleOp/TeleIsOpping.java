@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.faradaycode.OpModes;
 
-@TeleOp(name = "TeleIsOpping", group = "acomp")
+@TeleOp(name = "TeleIsOpping", group = "Acomp")
 public class TeleIsOpping extends OpModes {
 
     public void runOpMode(){

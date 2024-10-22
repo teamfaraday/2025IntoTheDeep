@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.faradaycode.OpModes;
 
-@TeleOp(name = "MecanumDrive", group = "bEXTRAS")
+@TeleOp(name = "MecanumDrive", group = "BEXTRAS")
 public class zMecanumDrive extends OpModes {
     public void runOpMode(){
         super.turnOnDT();
