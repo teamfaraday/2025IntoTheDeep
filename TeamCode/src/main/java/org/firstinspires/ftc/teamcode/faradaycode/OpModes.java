@@ -27,12 +27,12 @@ public abstract class OpModes extends LinearOpMode{
     public static boolean isSlow = false;
     public static double slowAmnt = 1.0;
 
-    public void turnOn() {
+    public void turnOn(boolean teleop) {
         intakeServo = new IntakeServo(hardwareMap);
         intakeArm = new IntakeArm(hardwareMap);
         slide = new Slide(hardwareMap);
         outtakeMotor = new OuttakeMotor(hardwareMap);
-        turnOnDT();
+        if (teleop) turnOnDT();
     }
 
     public void turnOnDT() {

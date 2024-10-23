@@ -109,6 +109,11 @@ public class IntakeArm implements deviceNames {
         }
     }
 
+    public void activate() {
+
+    }
+
+
     public void setMotorPos(int ticks) {
         encodering = true;
         motor.setTargetPosition(ticks);
@@ -127,4 +132,5 @@ public class IntakeArm implements deviceNames {
     public void moveServoPerp() {
         servo.setPosition(perpPos);
     }
+
 }

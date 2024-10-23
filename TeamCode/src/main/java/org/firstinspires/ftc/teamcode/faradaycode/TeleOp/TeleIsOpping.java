@@ -9,7 +9,7 @@ public class TeleIsOpping extends OpModes {
 
     public void runOpMode(){
         //code here is setup like constants
-        super.turnOn();
+        super.turnOn(true);
 
         //code past here will run once you start, so an init
         waitForStart();
