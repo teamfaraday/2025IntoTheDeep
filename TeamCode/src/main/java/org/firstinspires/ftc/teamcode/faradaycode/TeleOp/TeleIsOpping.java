@@ -28,7 +28,7 @@ public class TeleIsOpping extends OpModes {
             stopped = (gamepad1.left_bumper && gamepad1.left_trigger > 0.6 && gamepad1.right_bumper && gamepad1.right_trigger > 0.6) || (gamepad2.left_bumper && gamepad2.left_trigger > 0.6 && gamepad2.right_bumper && gamepad2.right_trigger > 0.6) || gamepad1.start || gamepad2.start;
 
             //gp2
-            outtakeMotor.iterate(gamepad1.a, gamepad1.b);
+            outtakeMotor.iterate(gamepad1.a);
             slide.iterate(gamepad1.left_bumper, gamepad1.right_bumper, gamepad1.a);
 
 

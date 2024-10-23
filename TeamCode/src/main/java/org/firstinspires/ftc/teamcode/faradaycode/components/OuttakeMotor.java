@@ -34,7 +34,7 @@ public class OuttakeMotor implements deviceNames {
     }
 
     //when called, parse through for motion
-    public void iterate(boolean up, boolean down) {
+    public void iterate(boolean up) {
 
         if (encodering) {
             if (outtakeMotor.isBusy()) {
