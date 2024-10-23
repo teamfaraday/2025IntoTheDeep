@@ -49,4 +49,5 @@ public class IntakeServo implements deviceNames {
     public void activate(double speed) {
         intakeServo.setPower(speed);
     }
+
 }

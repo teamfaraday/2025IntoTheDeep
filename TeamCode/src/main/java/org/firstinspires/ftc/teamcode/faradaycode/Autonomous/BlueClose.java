@@ -27,25 +27,34 @@ public class BlueClose extends OpModes {
         MecanumDrive drive = new MecanumDrive(hardwareMap, initialPose);
 
 
+
+        Action traj1 =  drive.actionBuilder(initialPose)
+                .strafeTo(new Vector2d(0, 30))
+                .build();
+
+        Action traj2 =  drive.actionBuilder(initialPose)
+                .strafeTo(new Vector2d(0, 0))
+                .build();
+
         waitForStart();
 
-        TrajectoryActionBuilder tab1 = drive.actionBuilder(initialPose)
-                .strafeTo(new Vector2d(0, 30))
-                .waitSeconds(2);
 
         intakeServo.activate();
-        intakeArm.activate();
 
-        Action trajectoryActionChosen;
 
-            trajectoryActionChosen = tab1.build();
 
         Actions.runBlocking(
                 new SequentialAction(
-                        trajectoryActionChosen
-
+                        traj1
                 )
         );
+        intakeServo.deactivate();
+        Actions.runBlocking(
+                new SequentialAction(
+                        traj2
+                )
+        );
+
 
 
         if (isStopRequested()) return;
