@@ -110,9 +110,20 @@ public class IntakeArm implements deviceNames {
     }
 
     public void activate() {
-
+        if (isIn) {
+            movingOut = true;
+            setMotorPos(outPos);
+            insideGrav = false;
+            outsideGrav = true;
+            isIn = false;
+        } else {
+            movingIn = true;
+            setMotorPos(inPos);
+            insideGrav = true;
+            outsideGrav = false;
+            isIn = true;
+        }
     }
-
 
     public void setMotorPos(int ticks) {
         encodering = true;
