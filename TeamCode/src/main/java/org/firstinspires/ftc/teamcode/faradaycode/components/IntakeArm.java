@@ -19,7 +19,7 @@ public class IntakeArm implements deviceNames {
     public final double gravPowerInside = -.00045;
     public final double gravPowerOutside = .00045;
 
-    public final int inPos = -7;
+    public final int inPos = 0;
     public final int outPos = -694;
 
     public final int rotateServoOutPos = -300;
@@ -51,8 +51,10 @@ public class IntakeArm implements deviceNames {
     //inits object and assigns servo names
     public IntakeArm(HardwareMap hardwareMap) {
         motor = hardwareMap.dcMotor.get(arm);
+
         motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         servo = hardwareMap.servo.get(rotate);
 
@@ -132,35 +134,44 @@ public class IntakeArm implements deviceNames {
         servo.setPosition(perpPos);
     }
 
-    public class MoveOut implements Action {
-        private boolean initialized = false;
-        @Override
-        public boolean run(@NonNull TelemetryPacket packet) {
-
-            moveServoPar();
-            //setMotorPos(-700);
-            return false;
-            /*if (!initialized) {
-                motor.setPower(0.4);
-                initialized = true;
-            }
-            double pos = motor.getCurrentPosition();
-            packet.put("liftPos", pos);
-            if (pos > -694) {
-                return true;
-            } else {
-                if (pos < -300) {
-                    moveServoPerp();
-                }
-                motor.setPower(0);
-                return false;
-            }*/
-        }
-
-    }
     public Action moveOut() {
-        return new MoveOut();
+        return new Action() {
+            public boolean run(@NonNull TelemetryPacket packet) {
+
+                double pos = motor.getCurrentPosition();
+                packet.put("liftPos", pos);
+                if (pos > outPos) {
+                    motor.setPower(-power);
+                    if (pos < rotateServoOutPos) {
+                        moveServoPar();
+                    }
+                    return true;
+                } else {
+                    motor.setPower(0);
+                    return false;
+                }
+            }
+        };
     }
 
+    public Action moveIn() {
+        return new Action() {
+            public boolean run(@NonNull TelemetryPacket packet) {
+
+                double pos = motor.getCurrentPosition();
+                packet.put("liftPos", pos);
+                if (pos < inPos) {
+                    motor.setPower(power);
+                    if (pos > rotateServoInPos) {
+                        moveServoPerp();
+                    }
+                    return true;
+                } else {
+                    motor.setPower(0);
+                    return false;
+                }
+            }
+        };
+    }
 
 }

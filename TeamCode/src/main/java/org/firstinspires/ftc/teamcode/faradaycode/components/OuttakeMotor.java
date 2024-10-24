@@ -18,7 +18,6 @@ public class OuttakeMotor implements deviceNames {
 
     public boolean encodering;
     public boolean isUp;
-    public boolean isUpCorrected;
 
     //inits servo objects
     public DcMotor outtakeMotor;
@@ -28,13 +27,13 @@ public class OuttakeMotor implements deviceNames {
         outtakeMotor = hardwareMap.dcMotor.get(outtake);
         outtakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         outtakeMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        outtakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         encodering = false;
         isUp = false;
-        isUpCorrected = false;
     }
 
     //when called, parse through for motion
-    public void iterate(boolean up) {
+    public void iterate(boolean move) {
 
         if (encodering) {
             if (outtakeMotor.isBusy()) {
@@ -44,14 +43,13 @@ public class OuttakeMotor implements deviceNames {
             }
         }
 
-        if (up && !encodering) {
+        if (move && !encodering) {
             if(isUp) {
                 setPos(downPos);
                 isUp=false;
             } else {
                 setPos(upPos);
                 isUp=true;
-                isUpCorrected = false;
             }
         } else if (!encodering) {
             outtakeMotor.setPower(0);
@@ -69,10 +67,6 @@ public class OuttakeMotor implements deviceNames {
         outtakeMotor.setPower(0);
         outtakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         encodering=false;
-        if (!isUpCorrected && isUp) {
-            setPos(upPosCorrected);
-            isUpCorrected=true;
-        }
     }
 
 

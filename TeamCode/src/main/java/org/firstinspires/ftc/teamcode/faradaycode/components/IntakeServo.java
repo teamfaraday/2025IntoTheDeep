@@ -49,49 +49,34 @@ public class IntakeServo implements deviceNames {
         intakeServo.setPower(power2 * OpModes.nerf * ((OpModes.isSlow) ? slowConst: OpModes.slowAmnt));
     }
 
-    //for Auto
-    public void activate(double speed) {
-        intakeServo.setPower(speed);
-    }
+    //auto
 
-    public class SpinIn implements Action {
-        @Override
-        public boolean run(@NonNull TelemetryPacket packet) {
-            activate();
-            return false;
-        }
-
-    }
     public Action spinIn() {
-        return new SpinIn();
+        return new Action() {
+            public boolean run(@NonNull TelemetryPacket packet) {
+                activate();
+                return false;
+            }
+        };
     }
 
-    public class SpinOut implements Action {
-        @Override
-        public boolean run(@NonNull TelemetryPacket packet) {
-            reverse();
-            return false;
-        }
-
-    }
     public Action spinOut() {
-        return new SpinOut();
-    }
-
-    public class SpinStop implements Action {
-        @Override
-        public boolean run(@NonNull TelemetryPacket packet) {
-            deactivate();
-            return false;
-        }
+        return new Action() {
+            public boolean run(@NonNull TelemetryPacket packet) {
+                reverse();
+                return false;
+            }
+        };
     }
 
     public Action spinStop() {
-        return new SpinStop();
+        return new Action() {
+            public boolean run(@NonNull TelemetryPacket packet) {
+                deactivate();
+                return false;
+            }
+        };
     }
-
-
-
 
 }
 
