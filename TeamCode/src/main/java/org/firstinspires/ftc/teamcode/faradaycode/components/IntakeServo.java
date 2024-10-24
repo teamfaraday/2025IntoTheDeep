@@ -1,5 +1,9 @@
 package org.firstinspires.ftc.teamcode.faradaycode.components;
 
+import androidx.annotation.NonNull;
+
+import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
+import com.acmerobotics.roadrunner.Action;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -50,4 +54,44 @@ public class IntakeServo implements deviceNames {
         intakeServo.setPower(speed);
     }
 
+    public class SpinIn implements Action {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+            activate();
+            return false;
+        }
+
+    }
+    public Action spinIn() {
+        return new SpinIn();
+    }
+
+    public class SpinOut implements Action {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+            reverse();
+            return false;
+        }
+
+    }
+    public Action spinOut() {
+        return new SpinOut();
+    }
+
+    public class SpinStop implements Action {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+            deactivate();
+            return false;
+        }
+    }
+
+    public Action spinStop() {
+        return new SpinStop();
+    }
+
+
+
+
 }
+

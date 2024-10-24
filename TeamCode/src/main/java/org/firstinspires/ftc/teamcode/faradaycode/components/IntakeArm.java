@@ -1,5 +1,9 @@
 package org.firstinspires.ftc.teamcode.faradaycode.components;
 
+import androidx.annotation.NonNull;
+
+import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
+import com.acmerobotics.roadrunner.Action;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -127,4 +131,36 @@ public class IntakeArm implements deviceNames {
     public void moveServoPerp() {
         servo.setPosition(perpPos);
     }
+
+    public class MoveOut implements Action {
+        private boolean initialized = false;
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+
+            moveServoPar();
+            //setMotorPos(-700);
+            return false;
+            /*if (!initialized) {
+                motor.setPower(0.4);
+                initialized = true;
+            }
+            double pos = motor.getCurrentPosition();
+            packet.put("liftPos", pos);
+            if (pos > -694) {
+                return true;
+            } else {
+                if (pos < -300) {
+                    moveServoPerp();
+                }
+                motor.setPower(0);
+                return false;
+            }*/
+        }
+
+    }
+    public Action moveOut() {
+        return new MoveOut();
+    }
+
+
 }
