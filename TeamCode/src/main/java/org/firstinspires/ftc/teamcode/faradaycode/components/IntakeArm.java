@@ -20,9 +20,11 @@ public class IntakeArm implements deviceNames {
     public final double gravPowerOutside = .00045;
 
     public final int inPos = 0;
+    public final int interPos = -200;
+
     public final int outPos = -694;
 
-    public final int rotateServoOutPos = -300;
+    public final int rotateServoOutPos = -200;
     public final int rotateServoInPos = -400;
 
     //amnt to slow smth down by
@@ -165,6 +167,40 @@ public class IntakeArm implements deviceNames {
                     if (pos > rotateServoInPos) {
                         moveServoPerp();
                     }
+                    return true;
+                } else {
+                    motor.setPower(0);
+                    return false;
+                }
+            }
+        };
+    }
+
+    public Action moveInterFromIn() {
+        return new Action() {
+            public boolean run(@NonNull TelemetryPacket packet) {
+                //moving from in to inter !!
+                double pos = motor.getCurrentPosition();
+                packet.put("liftPos", pos);
+                if (pos > interPos) {
+                    motor.setPower(-power);
+                    return true;
+                } else {
+                    motor.setPower(0);
+                    return false;
+                }
+            }
+        };
+    }
+
+    public Action moveInterFromOut() {
+        return new Action() {
+            public boolean run(@NonNull TelemetryPacket packet) {
+                //moving from in to inter !!
+                double pos = motor.getCurrentPosition();
+                packet.put("liftPos", pos);
+                if (pos < interPos) {
+                    motor.setPower(power);
                     return true;
                 } else {
                     motor.setPower(0);

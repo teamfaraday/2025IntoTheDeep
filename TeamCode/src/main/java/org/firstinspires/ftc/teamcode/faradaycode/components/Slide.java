@@ -1,5 +1,9 @@
 package org.firstinspires.ftc.teamcode.faradaycode.components;
 
+import androidx.annotation.NonNull;
+
+import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
+import com.acmerobotics.roadrunner.Action;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -74,6 +78,16 @@ public class Slide implements deviceNames{
     public void deactivate() {
         slideL.setPower(0);
         slideR.setPower(0);
+    }
+
+    public Action moveSlides(double amnt) {
+        return new Action() {
+            public boolean run(@NonNull TelemetryPacket packet) {
+                slideL.setPower(amnt);
+                slideR.setPower(amnt);
+                return false;
+            }
+        };
     }
 
 }

@@ -1,5 +1,9 @@
 package org.firstinspires.ftc.teamcode.faradaycode.components;
 
+import androidx.annotation.NonNull;
+
+import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
+import com.acmerobotics.roadrunner.Action;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -68,6 +72,41 @@ public class OuttakeMotor implements deviceNames {
         outtakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         encodering=false;
     }
+
+    public Action moveUp() {
+        return new Action() {
+            public boolean run(@NonNull TelemetryPacket packet) {
+                //moving from in to inter !!
+                double pos = outtakeMotor.getCurrentPosition();
+                packet.put("liftPos", pos);
+                if (pos > upPos) {
+                    outtakeMotor.setPower(-power1);
+                    return true;
+                } else {
+                    outtakeMotor.setPower(0);
+                    return false;
+                }
+            }
+        };
+    }
+
+    public Action moveDown() {
+        return new Action() {
+            public boolean run(@NonNull TelemetryPacket packet) {
+                //moving from in to inter !!
+                double pos = outtakeMotor.getCurrentPosition();
+                packet.put("liftPos", pos);
+                if (pos < downPos) {
+                    outtakeMotor.setPower(power1);
+                    return true;
+                } else {
+                    outtakeMotor.setPower(0);
+                    return false;
+                }
+            }
+        };
+    }
+
 
 
 }

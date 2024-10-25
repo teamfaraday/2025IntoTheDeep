@@ -9,11 +9,6 @@ import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.faradaycode.OpModes;
 import org.firstinspires.ftc.teamcode.roadrunner.MecanumDrive;
@@ -21,8 +16,8 @@ import org.firstinspires.ftc.teamcode.roadrunner.MecanumDrive;
 
 
 
-@Autonomous(name = "BlueClose", group = "Autonomous")
-public class BlueClose extends OpModes {
+@Autonomous(name = "Close", group = "Autonomous")
+public class Close extends OpModes {
 
     public Action pause(int milis) {
         return new Action() {
@@ -54,8 +49,7 @@ public class BlueClose extends OpModes {
                 .build();
 
         while (!isStopRequested() && !opModeIsActive()) {
-            telemetry.addData("Position during Init", 2);
-            telemetry.update();
+            //
         }
 
 
@@ -67,14 +61,20 @@ public class BlueClose extends OpModes {
                         traj1,
                         intakeArm.moveOut(),
                         intakeServo.spinIn(),
-                        pause(1000),
+                        pause(2000),
                         intakeServo.spinStop(),
-                        traj2,
                         intakeArm.moveIn(),
                         intakeServo.spinOut(),
-                        pause(1000),
+                        traj2,
                         intakeServo.spinStop(),
-                        traj3
+                        intakeArm.moveInterFromIn(),
+                        slide.moveSlides(-1),
+                        pause(1500),
+                        slide.moveSlides(-0.06),
+                        outtakeMotor.moveUp(),
+                        pause(500),
+                        outtakeMotor.moveDown(),
+                        pause(100)
                 )
         );
 

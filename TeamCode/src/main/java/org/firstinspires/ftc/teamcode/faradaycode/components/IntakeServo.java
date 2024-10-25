@@ -51,7 +51,16 @@ public class IntakeServo implements deviceNames {
 
     //auto
 
-    public Action spinIn() {
+    public Action spin(double amnt) {
+        return new Action() {
+            public boolean run(@NonNull TelemetryPacket packet) {
+                intakeServo.setPower(amnt * OpModes.nerf * ((OpModes.isSlow) ? slowConst: OpModes.slowAmnt));
+                return false;
+            }
+        };
+    }
+
+    public Action spinOut() {
         return new Action() {
             public boolean run(@NonNull TelemetryPacket packet) {
                 activate();
@@ -60,7 +69,7 @@ public class IntakeServo implements deviceNames {
         };
     }
 
-    public Action spinOut() {
+    public Action spinIn() {
         return new Action() {
             public boolean run(@NonNull TelemetryPacket packet) {
                 reverse();
